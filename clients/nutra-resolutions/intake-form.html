@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project Intake — Nutra Resolutions</title>
+<meta name="description" content="Tell us about your supplement project. This form captures everything we need to scope formulation, production, and packaging — no discovery call required.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/nutra.css">
+</head>
+<body>
+
+<a class="skip-link" href="#intake">Skip to the form</a>
+
+<!-- ===== SECTION: batch-strip ============================================ -->
+<div class="batch-strip">
+  <div class="wrap">
+    <span class="mono">Doc <b>NR-INTAKE-01</b></span>
+    <span class="mono">Rev <b>A</b></span>
+    <span class="mono batch-strip__spacer">FDA-Registered &middot; cGMP-Compliant</span>
+  </div>
+</div>
+
+<!-- ===== SECTION: header ================================================= -->
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="index.html">
+      <span>Nutra <span class="brand__mark">Resolutions</span></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#process">Process</a>
+      <a href="index.html#compliance">Compliance</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ===== SECTION: form-masthead ========================================== -->
+<div class="form-masthead">
+  <div class="wrap">
+    <div class="eyebrow"><span class="mono">Project Intake</span></div>
+    <h1>Tell us what you&rsquo;re building.</h1>
+    <p>
+      This replaces the introductory phone call. Answer what you can &mdash; the more
+      detail you give us here, the sooner we can come back with a real scope for your
+      formulation, production run, and packaging.
+    </p>
+    <div class="form-meta">
+      <div>
+        <span class="mono">Time to complete</span>
+        <strong>About 5 minutes</strong>
+      </div>
+      <div>
+        <span class="mono">Required fields</span>
+        <strong>Marked with &lowast;</strong>
+      </div>
+      <div>
+        <span class="mono">Response time</span>
+        <strong>1&ndash;2 business days</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION: intake-form ============================================ -->
+<section class="intake" id="intake">
+  <div class="wrap">
+    <div class="intake__inner">
+
+      <!-- Confirmation panel, revealed on successful submit -->
+      <div class="receipt" id="receipt" hidden tabindex="-1">
+        <div class="eyebrow"><span class="mono">Submission received</span></div>
+        <h2>Thank you &mdash; we have your project details.</h2>
+        <p>
+          A member of the Nutra Resolutions team will review your submission and follow
+          up within 1&ndash;2 business days. If your project is time-sensitive, reply
+          directly to <a href="mailto:info@nutraresolutions.com">info@nutraresolutions.com</a>
+          and reference your company name.
+        </p>
+        <p style="margin-top:1.25rem">
+          <a class="btn btn--outline" href="index.html">Back to home</a>
+        </p>
+      </div>
+
+      <form id="intake-form" novalidate>
+
+        <!-- --- 01 Company &amp; Contact ------------------------------------ -->
+        <fieldset class="fset">
+          <div class="fset__head">
+            <span class="fset__num">Sec 01 / 05</span>
+            <h2 class="fset__title">Company &amp; Contact</h2>
+          </div>
+
+          <div class="grid">
+            <div class="field span-2">
+              <label for="company">Company or brand name<span class="req">&lowast;</span></label>
+              <input type="text" id="company" name="company" autocomplete="organization" required>
+            </div>
+
+            <div class="field span-2">
+              <label for="website">Website<span class="opt">Optional</span></label>
+              <input type="url" id="website" name="website" placeholder="https://" autocomplete="url">
+              <span class="field__hint">Include https:// &mdash; or leave blank if you don&rsquo;t have one yet</span>
+            </div>
+
+            <div class="field">
+              <label for="contact_name">Your name<span class="req">&lowast;</span></label>
+              <input type="text" id="contact_name" name="contact_name" autocomplete="name" required>
+            </div>
+
+            <div class="field">
+              <label for="role">Your role<span class="opt">Optional</span></label>
+              <input type="text" id="role" name="role" placeholder="Founder, brand manager, buyer&hellip;" autocomplete="organization-title">
+            </div>
+
+            <div class="field">
+              <label for="email">Email<span class="req">&lowast;</span></label>
+              <input type="email" id="email" name="email" autocomplete="email" required>
+            </div>
+
+            <div class="field">
+              <label for="phone">Phone<span class="opt">Optional</span></label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel">
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- --- 02 Product Overview ---------------------------------------- -->
+        <fieldset class="fset">
+          <div class="fset__head">
+            <span class="fset__num">Sec 02 / 05</span>
+            <h2 class="fset__title">Product Overview</h2>
+          </div>
+
+          <div class="grid">
+            <div class="field span-2">
+              <label for="product_name">Working product name<span class="opt">Optional</span></label>
+              <input type="text" id="product_name" name="product_name" placeholder="A placeholder is fine">
+            </div>
+
+            <div class="field span-2">
+              <label for="product_purpose">What does the product do?<span class="req">&lowast;</span></label>
+              <textarea id="product_purpose" name="product_purpose" required
+                placeholder="The benefit you want it to deliver, and who it&rsquo;s for."></textarea>
+              <span class="field__hint">Plain language is fine &mdash; no formulation knowledge needed</span>
+            </div>
+          </div>
+
+          <fieldset class="qgroup" style="margin-top:1.5rem">
+            <legend class="qlabel">Format &mdash; select all that apply<span class="req">&lowast;</span></legend>
+            <div class="choices">
+              <label class="choice"><input type="checkbox" name="format" value="Capsule"> Capsule</label>
+              <label class="choice"><input type="checkbox" name="format" value="Softgel"> Softgel</label>
+              <label class="choice"><input type="checkbox" name="format" value="Tablet"> Tablet</label>
+              <label class="choice"><input type="checkbox" name="format" value="Powder"> Powder</label>
+              <label class="choice"><input type="checkbox" name="format" value="Gummy"> Gummy</label>
+              <label class="choice"><input type="checkbox" name="format" value="Liquid"> Liquid</label>
+              <label class="choice"><input type="checkbox" name="format" value="Not sure yet"> Not sure yet
+                <span class="choice__sub">We&rsquo;ll advise</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="qgroup" style="margin-top:1.5rem">
+            <legend class="qlabel">Where are you starting from?<span class="req">&lowast;</span></legend>
+            <div class="choices choices--stack">
+              <label class="choice">
+                <input type="radio" name="stage" value="Concept only" required>
+                <span>Concept only
+                  <span class="choice__sub">An idea, no formula yet</span>
+                </span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="stage" value="Have a formula">
+                <span>I have a formula
+                  <span class="choice__sub">Existing spec or ingredient deck in hand</span>
+                </span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="stage" value="Switching manufacturers">
+                <span>Switching manufacturers
+                  <span class="choice__sub">Product is already in market</span>
+                </span>
+              </label>
+            </div>
+          </fieldset>
+        </fieldset>
+
+        <!-- --- 03 Formulation Details -------------------------------------- -->
+        <fieldset class="fset">
+          <div class="fset__head">
+            <span class="fset__num">Sec 03 / 05</span>
+            <h2 class="fset__title">Formulation Details</h2>
+          </div>
+          <p class="fset__note">
+            Everything in this section is optional. Skip anything you haven&rsquo;t decided &mdash;
+            it won&rsquo;t hold up your quote.
+          </p>
+
+          <div class="grid">
+            <div class="field span-2">
+              <label for="key_ingredients">Key ingredients or actives<span class="opt">Optional</span></label>
+              <textarea id="key_ingredients" name="key_ingredients"
+                placeholder="Ingredients you know you want, with doses if you have them."></textarea>
+            </div>
+          </div>
+
+          <fieldset class="qgroup" style="margin-top:1.5rem">
+            <legend class="qlabel">Label claims you want<span class="opt">Optional</span></legend>
+            <div class="choices">
+              <label class="choice"><input type="checkbox" name="label_claims" value="Non-GMO"> Non-GMO</label>
+              <label class="choice"><input type="checkbox" name="label_claims" value="Vegan"> Vegan</label>
+              <label class="choice"><input type="checkbox" name="label_claims" value="Vegetarian"> Vegetarian</label>
+              <label class="choice"><input type="checkbox" name="label_claims" value="Gluten-free"> Gluten-free</label>
+              <label class="choice"><input type="checkbox" name="label_claims" value="Organic"> Organic</label>
+              <label class="choice"><input type="checkbox" name="label_claims" value="Third-party tested"> Third-party tested</label>
+              <label class="choice"><input type="checkbox" name="label_claims" value="Halal"> Halal</label>
+              <label class="choice"><input type="checkbox" name="label_claims" value="Kosher"> Kosher</label>
+              <label class="choice"><input type="checkbox" name="label_claims" value="Not sure yet"> Not sure yet</label>
+            </div>
+            <div class="field" style="margin-top:1rem">
+              <label for="claims_other">Other claims<span class="opt">Optional</span></label>
+              <input type="text" id="claims_other" name="claims_other">
+            </div>
+          </fieldset>
+
+          <div class="grid grid--1" style="margin-top:1.5rem">
+            <div class="field">
+              <label for="allergens">Allergens to avoid<span class="opt">Optional</span></label>
+              <textarea id="allergens" name="allergens"
+                placeholder="Dairy, soy, gluten, tree nuts, shellfish&hellip;"></textarea>
+            </div>
+
+            <div class="field">
+              <label for="reference_product">Reference product<span class="opt">Optional</span></label>
+              <input type="text" id="reference_product" name="reference_product"
+                placeholder="A product on the market that&rsquo;s close to what you want">
+              <span class="field__hint">Brand and product name, or a link</span>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- --- 04 Volume &amp; Packaging ----------------------------------- -->
+        <fieldset class="fset">
+          <div class="fset__head">
+            <span class="fset__num">Sec 04 / 05</span>
+            <h2 class="fset__title">Volume &amp; Packaging</h2>
+          </div>
+
+          <div class="grid">
+            <div class="field">
+              <label for="order_quantity">Estimated initial order quantity<span class="req">&lowast;</span></label>
+              <select id="order_quantity" name="order_quantity" required>
+                <option value="">Select a range&hellip;</option>
+                <option>Under 1,000 units</option>
+                <option>1,000 &ndash; 5,000 units</option>
+                <option>5,000 &ndash; 10,000 units</option>
+                <option>10,000 &ndash; 25,000 units</option>
+                <option>25,000+ units</option>
+                <option>Not sure yet</option>
+              </select>
+              <span class="field__hint">An estimate is fine &mdash; it drives pricing tiers</span>
+            </div>
+
+            <div class="field">
+              <label for="timeline">Target launch timeline<span class="req">&lowast;</span></label>
+              <select id="timeline" name="timeline" required>
+                <option value="">Select a timeline&hellip;</option>
+                <option>As soon as possible</option>
+                <option>1 &ndash; 3 months</option>
+                <option>3 &ndash; 6 months</option>
+                <option>6 &ndash; 12 months</option>
+                <option>Exploring &mdash; no date set</option>
+              </select>
+            </div>
+          </div>
+
+          <fieldset class="qgroup" style="margin-top:1.5rem">
+            <legend class="qlabel">Packaging needs<span class="req">&lowast;</span></legend>
+            <div class="choices choices--stack">
+              <label class="choice">
+                <input type="radio" name="packaging" value="Full packaging design" required>
+                <span>Full packaging design
+                  <span class="choice__sub">Container, label, and artwork handled end to end</span>
+                </span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="packaging" value="Label only">
+                <span>Label only
+                  <span class="choice__sub">Artwork is ready or handled elsewhere</span>
+                </span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="packaging" value="Bulk / private label">
+                <span>Bulk &mdash; private label
+                  <span class="choice__sub">Shipped unpackaged for finishing on your side</span>
+                </span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="packaging" value="Not sure yet">
+                <span>Not sure yet
+                  <span class="choice__sub">We&rsquo;ll walk through the options</span>
+                </span>
+              </label>
+            </div>
+          </fieldset>
+        </fieldset>
+
+        <!-- --- 05 Notes ----------------------------------------------------- -->
+        <fieldset class="fset">
+          <div class="fset__head">
+            <span class="fset__num">Sec 05 / 05</span>
+            <h2 class="fset__title">Anything Else</h2>
+          </div>
+
+          <div class="field">
+            <label for="notes">Notes<span class="opt">Optional</span></label>
+            <textarea id="notes" name="notes" style="min-height:9rem"
+              placeholder="Certifications you need, distribution channels, budget constraints, questions for our team&hellip;"></textarea>
+          </div>
+        </fieldset>
+
+        <!-- Spam trap — hidden from people, tempting to bots -->
+        <div class="hp" aria-hidden="true">
+          <label for="company_fax">Do not fill this in</label>
+          <input type="text" id="company_fax" name="company_fax" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="submit-block">
+          <button class="btn btn--primary btn--lg" type="submit" id="submit-btn">Submit project details</button>
+          <p>We&rsquo;ll review and respond within 1&ndash;2 business days.</p>
+        </div>
+
+        <div class="form-status" id="form-status" role="status" aria-live="polite" hidden></div>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== SECTION: footer ================================================= -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="site-footer__grid">
+      <div>
+        <a class="brand" href="index.html"><span>Nutra <span class="brand__mark">Resolutions</span></span></a>
+        <p style="margin-top:1rem;max-width:34ch">
+          Turnkey contract manufacturing for lifestyle and dietary supplements &mdash;
+          concept to completion.
+        </p>
+      </div>
+      <div>
+        <span class="mono">Contact</span>
+        <p style="margin-top:.5rem"><a href="mailto:info@nutraresolutions.com">info@nutraresolutions.com</a></p>
+      </div>
+      <div>
+        <span class="mono">Compliance</span>
+        <p style="margin-top:.5rem">FDA-registered facility<br>cGMP-compliant manufacturing</p>
+      </div>
+    </div>
+    <div class="site-footer__bar">
+      <span class="mono">&copy; <span id="year">2026</span> Nutra Resolutions</span>
+      <span class="mono">Doc NR-INTAKE-01 &middot; Rev A</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/nutra.js"></script>
+</body>
+</html>
