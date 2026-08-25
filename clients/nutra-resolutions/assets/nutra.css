@@ -1,16 +1,23 @@
 /* ==========================================================================
    Nutra Resolutions — shared design system
    Palette / type / motif per build spec §4. Source of truth for both pages.
+
+   REBRANDING TO THE LIVE SITE'S COLOURS
+   The palette below is Kayla's direction, not sampled from nutraresolutions.com
+   (unreachable from the build sandbox). To match the real brand, change only
+   the four tokens marked BRAND — everything else is derived neutral and will
+   follow. --sage-deep should be a darker shade of --sage, and --sage-tint a
+   very light one, or the hover and checked states lose contrast.
    ========================================================================== */
 
 :root {
   /* Palette (spec §4) */
-  --navy:        #0f1b2b;
+  --navy:        #0f1b2b;   /* BRAND: dark ground — header, hero, footer */
   --navy-soft:   #1c2c40;
-  --paper:       #f7f7f4;
+  --paper:       #f7f7f4;   /* BRAND: page ground */
   --paper-warm:  #eeeee9;
-  --sage:        #4a7c74;
-  --sage-deep:   #3a635c;
+  --sage:        #4a7c74;   /* BRAND: accent — buttons, rules, active states */
+  --sage-deep:   #3a635c;   /* BRAND: accent, darker (hover + link text) */
   --sage-tint:   #e6efed;
   --line:        #d8d9d3;
   --ink:         #0f1b2b;
@@ -186,8 +193,19 @@ p:last-child { margin-bottom: 0; }
   text-decoration: none;
   line-height: 1.1;
 }
-.brand span { display: block; }
+.brand__text { display: block; }
 .brand__mark { color: var(--sage); }
+
+/* Logo slot. The header and footer both sit on --navy, so the file dropped in
+   here must be a light/reversed lockup — a dark-on-transparent logo vanishes.
+   SVG preferred; a PNG needs 2x the display height to stay crisp. */
+.brand__logo {
+  display: block;
+  height: 34px;
+  width: auto;
+  max-width: 15rem;
+}
+@media (max-width: 480px) { .brand__logo { height: 28px; } }
 .site-nav {
   margin-left: auto;
   display: flex;

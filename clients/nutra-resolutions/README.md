@@ -80,6 +80,36 @@ one file, switchable, with a mobile/desktop toggle and the open items listed in
 a side panel. Each page renders in its own iframe running the real markup, CSS,
 and JS, so what you review is what deploys.
 
+## Matching the live site, and the logo
+
+**Neither is done, and neither can be from inside this repo.**
+nutraresolutions.com is blocked by the build sandbox's egress proxy, as are
+the Wayback Machine and Brandfetch. I have never seen the site. The palette
+and type in `assets/nutra.css` are Kayla's direction from spec §4 — deep navy,
+sage, paper, Space Grotesk / Newsreader / IBM Plex Mono — not colours sampled
+from his brand.
+
+**To retheme:** change only the four tokens marked `BRAND` at the top of
+`assets/nutra.css`. Everything else derives from them. Keep `--sage-deep`
+darker than `--sage` and `--sage-tint` very light, or hover and checked states
+lose their contrast.
+
+**To drop the logo in:** both pages carry a `LOGO SLOT` comment in the header
+with the exact `<img>` line to paste, and the footer wordmark uses the same
+`.brand__text` class. Two things to know:
+
+- The header, hero, and footer all sit on the dark ground, so the file must be
+  the **light/reversed** lockup. A dark-on-transparent logo disappears.
+- SVG preferred. A PNG needs roughly 2× the display height (so ~68px tall for
+  the 34px slot) to stay sharp on retina.
+
+Worth deciding deliberately rather than by default: the spec's whole design
+premise is that the current homepage is too bare to sell anything, so the
+rebuild is meant to *replace* its look, not inherit it. Brand continuity
+usually means carrying the logo and colours across while letting the structure
+change. If his current site has a look worth keeping beyond those, I need
+screenshots — I cannot see it.
+
 ## Platform approach
 
 **Option B from spec §9 — standalone HTML, structured to convert to Liquid later.**
