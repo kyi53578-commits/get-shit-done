@@ -682,3 +682,66 @@ fieldset.qgroup legend { padding: 0; }
 }
 .contact-card .spec-row:first-of-type { border-top: 0; }
 .contact-card a { font-family: var(--font-ui); font-size: .95rem; }
+
+/* --- Founder / personnel record ---------------------------------------- */
+
+.founder__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
+  gap: clamp(1.75rem, 4vw, 3rem);
+  margin-top: 2.5rem;
+  align-items: start;
+}
+@media (max-width: 780px) {
+  .founder__grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+.portrait {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--sage);
+  border-radius: var(--radius);
+  padding: .75rem;
+}
+.portrait__frame {
+  aspect-ratio: 4 / 5;
+  background: var(--paper-warm);
+  border: 1px dashed #b9bbb3;
+  border-radius: var(--radius);
+  display: grid;
+  place-content: center;
+  gap: .5rem;
+  text-align: center;
+  padding: 1rem;
+}
+.portrait__frame img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+.portrait__cap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .25rem 1rem;
+  padding: .75rem .25rem .25rem;
+  border-top: 1px solid var(--line);
+  margin-top: .75rem;
+}
+
+.founder__body h3 { margin-bottom: .35rem; }
+.founder__name {
+  font-family: var(--font-ui);
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.founder__role {
+  font-family: var(--font-mono);
+  font-size: .6875rem;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+  margin-top: .4rem;
+}
+.founder__bio { margin-top: 1.25rem; max-width: 60ch; }
+.founder__record { margin-top: 1.75rem; }
