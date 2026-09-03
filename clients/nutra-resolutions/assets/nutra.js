@@ -111,7 +111,7 @@
     var data = new FormData(form);
     data.delete('company_fax');
     // Multi-selects arrive as repeated keys; collapse them for readable email
-    ['format', 'label_claims'].forEach(function (key) {
+    ['format', 'label_claims', 'extras'].forEach(function (key) {
       var values = data.getAll(key);
       data.delete(key);
       if (values.length) data.append(key, values.join(', '));

@@ -323,6 +323,24 @@
             <h2 class="fset__title">Anything Else</h2>
           </div>
 
+          <fieldset class="qgroup" style="margin-bottom:1.5rem">
+            <legend class="qlabel">Anything you&rsquo;d like to arrange?<span class="opt">Optional</span></legend>
+            <div class="choices choices--stack">
+              <label class="choice">
+                <input type="checkbox" name="extras" value="Facility tour">
+                <span>I&rsquo;d like to schedule a facility tour
+                  <span class="choice__sub">See where your product would be made</span>
+                </span>
+              </label>
+              <label class="choice">
+                <input type="checkbox" name="extras" value="Call after review">
+                <span>I&rsquo;d like a call once you&rsquo;ve reviewed this
+                  <span class="choice__sub">Otherwise we&rsquo;ll reply by email</span>
+                </span>
+              </label>
+            </div>
+          </fieldset>
+
           <div class="field">
             <label for="notes">Notes<span class="opt">Optional</span></label>
             <textarea id="notes" name="notes" style="min-height:9rem"
@@ -368,11 +386,20 @@
       <div>
         <span class="mono">Compliance</span>
         <p style="margin-top:.5rem">FDA-registered facility<br>cGMP-compliant manufacturing</p>
+        <p style="margin-top:.75rem">
+          <a href="https://www.fda.gov/consumers">U.S. Food &amp; Drug Administration</a><br>
+          <a href="https://www.fda.gov/consumers/consumer-updates">FDA Consumer Updates</a>
+        </p>
       </div>
     </div>
     <div class="site-footer__bar">
       <span class="mono">&copy; <span id="year">2026</span> Nutra Resolutions</span>
       <span class="mono">Doc NR-INTAKE-01 &middot; Rev A</span>
+      <span class="mono" style="margin-left:auto">
+        <a href="https://www.nutraresolutions.com/policies/terms-of-service">Terms of Service</a>
+        &nbsp;&middot;&nbsp;
+        <a href="https://www.nutraresolutions.com/policies/privacy-policy">Privacy Policy</a>
+      </span>
     </div>
   </div>
 </footer>
