@@ -140,21 +140,45 @@ block into `sections/nutra-hero.liquid`, wrapping the copy in `{{ section.settin
 and appending a `{% schema %}` — no re-architecting. That work is additive
 whenever theme access and timeline allow.
 
-### Deploying to Shopify
+### Deploying
 
-1. `node build.mjs` — produces `dist/index.html` and `dist/intake-form.html`,
-   each fully self-contained (CSS and JS inlined, ~36–40 KB). `dist/` is
-   git-ignored by repo convention, so generate it fresh before each deploy.
-2. In the theme, add a `page.custom-html` template that renders `{{ page.content }}`
-   without the theme's own header and footer wrapper.
-3. Create two pages — suggested handles `/pages/request-a-quote` (intake form)
-   and the homepage — and paste the matching `dist/` file into each page's HTML
-   source view, assigning the custom template.
-4. **Update the cross-page links.** The files link to each other as
-   `index.html` / `intake-form.html`. Once Shopify handles are set, swap these
-   for the real paths (e.g. `/` and `/pages/request-a-quote`). There are 9 in
-   `index.html` (7 to the form, 2 home) and 7 in `intake-form.html` (all home,
-   4 of them anchored to landing-page sections).
+The domain already points at his Shopify store, so this is not a "buy a domain
+and upload" job — it is either getting the pages into that store, or hosting
+them somewhere and pointing a subdomain at it.
+
+Either way, first: **update the cross-page links.** The files link to each
+other as `index.html` / `intake-form.html`. Swap them for the real paths once
+the URLs are decided. There are 9 in `index.html` (7 to the form, 2 home) and
+7 in `intake-form.html` (all home, 4 anchored to landing-page sections).
+
+**Route 1 — into Shopify, via the theme code editor.**
+Do NOT paste the `dist/` files into a page's HTML source view in the admin.
+Shopify sanitizes page content and strips `<script>` tags, which would silently
+kill the form's validation and submission — the page would look right and do
+nothing. Use the code editor instead, which does not sanitize:
+
+1. Online Store → Themes → ⋯ → **Edit code**
+2. **Assets** → Add a new asset → upload `assets/nutra.css` and `assets/nutra.js`
+3. **Templates** → Add a new template → `page` → name it `intake`. On an Online
+   Store 2.0 theme this creates a JSON template, so also add
+   `sections/nutra-intake.liquid` holding the markup and reference it from the
+   JSON. On a vintage theme, `templates/page.intake.liquid` takes the markup
+   directly.
+4. Reference the assets in the template:
+   `{{ 'nutra.css' | asset_url | stylesheet_tag }}` and
+   `{{ 'nutra.js' | asset_url | script_tag }}`
+5. Pages → Add page → title "Request a Quote" → Theme template: `intake`.
+   Lands at `/pages/request-a-quote`.
+6. The homepage is a separate job: replacing it means editing the theme's
+   `index` template, not creating a page. Do it after the form is live.
+
+**Route 2 — host it yourself and point a subdomain at it.**
+Faster, needs no Shopify access, and the `dist/` files work as-is because
+nothing sanitizes them. Drag the folder onto Netlify Drop or Cloudflare Pages,
+get a URL in about a minute, then add a CNAME so it answers on something like
+`quote.nutraresolutions.com`. Free at this traffic level. Good interim move
+while theme access is pending — the form goes live and starts replacing calls,
+and it can migrate into the theme later.
 
 Fonts load from Google Fonts. If Dr. Bruce prefers self-hosting, upload the
 three families to theme assets and swap the `<link>` for an `@font-face` block;

@@ -51,8 +51,8 @@ const REVIEW_ITEMS = [
   {
     level: 'blocker',
     where: 'Team section',
-    what: 'Bruce’s title says General Manager, not owner',
-    why: 'Every source I could find — ZoomInfo, RocketReach, Datanyze — lists him as General Manager. None says owner or founder. You told me owner. One of these is wrong and it’s his job title on his own website, so ask him directly.'
+    what: 'No job title on the page, on purpose',
+    why: 'Sources said General Manager, the brief said owner. Rather than pick one, the section runs without a title — it reads fine. Ask Bruce in the last phase and drop the right one in. The “Based: Las Vegas” line came out too; he is not in Nevada.'
   },
   {
     level: 'blocker',
