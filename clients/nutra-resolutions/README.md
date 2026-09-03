@@ -75,10 +75,25 @@ knowing before building a section around his face.
 
 ## Reviewing it
 
-`node build.mjs && node preview.mjs` regenerates `preview.html`: both pages in
-one file, switchable, with a mobile/desktop toggle and the open items listed in
-a side panel. Each page renders in its own iframe running the real markup, CSS,
-and JS, so what you review is what deploys.
+Two builds, and the difference matters:
+
+```
+node build.mjs && node preview.mjs             -> preview.html         (ours)
+node build.mjs && node preview.mjs --client    -> preview-client.html  (theirs)
+```
+
+Both put the pages in one switchable file with a mobile/desktop toggle, each
+rendering in its own iframe against the real markup, CSS, and JS — so what you
+review is what deploys.
+
+**`preview.html` is internal.** It carries the review panel and leaves our
+working notes in the embedded markup: the `UNCONFIRMED` flags, the point about
+the "Dr." title and the FTC, which claims came from data brokers.
+
+**`preview-client.html` is the one you send.** It drops the panel and strips
+every HTML comment from the embedded pages, so none of that survives a
+View Source. Verified by test, not by eye. `dist/` keeps its comments either
+way — that is how the flags reach whoever deploys the page.
 
 ## Matching the live site, and the logo
 

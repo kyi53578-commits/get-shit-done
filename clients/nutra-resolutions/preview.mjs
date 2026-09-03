@@ -13,6 +13,11 @@ import { fileURLToPath } from 'node:url';
 
 const root = dirname(fileURLToPath(import.meta.url));
 
+/* --client drops the internal review panel and writes preview-client.html —
+   the version that is safe to send to the client. The default build keeps the
+   panel and is for us. */
+const CLIENT = process.argv.includes('--client');
+
 /* Injected into each page so in-page links drive the shell's view switcher. */
 const BRIDGE = `
 <script>
@@ -29,8 +34,16 @@ document.addEventListener('click', function (e) {
 
 /** Embed page source in a <script type="text/plain"> without ending it early. */
 function embed(file) {
-  const html = readFileSync(join(root, 'dist', file), 'utf8')
-    .replace('</body>', BRIDGE + '</body>');
+  let html = readFileSync(join(root, 'dist', file), 'utf8');
+
+  // The markup carries our working notes as HTML comments — the UNCONFIRMED
+  // flags, the FTC point about the "Dr." title, which claims came from data
+  // brokers. Invisible on screen, but one View Source away, so the client
+  // build drops them. Never strip these from dist/ itself: they are how the
+  // flags survive to whoever deploys the page.
+  if (CLIENT) html = html.replace(/<!--[\s\S]*?-->/g, '');
+
+  html = html.replace('</body>', BRIDGE + '</body>');
   return html.replace(/<\/script/gi, '<\\/script');
 }
 
@@ -91,7 +104,7 @@ const rows = REVIEW_ITEMS.map(i => `
 
 const blockers = REVIEW_ITEMS.filter(i => i.level === 'blocker').length;
 
-const out = `<title>Nutra Resolutions Preview</title>
+const out = `<title>Nutra Resolutions ${CLIENT ? 'Draft' : 'Preview'}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
@@ -221,7 +234,7 @@ body {
 </style>
 
 <div class="bar">
-  <span class="bar__label">Preview</span>
+  <span class="bar__label">${CLIENT ? 'Draft' : 'Preview'}</span>
   <div class="seg" role="group" aria-label="Page">
     <button type="button" data-page="index" aria-pressed="true">Landing page</button>
     <button type="button" data-page="intake-form" aria-pressed="false">Intake form</button>
@@ -230,9 +243,9 @@ body {
     <button type="button" data-w="desktop" aria-pressed="true">Desktop</button>
     <button type="button" data-w="mobile" aria-pressed="false">Mobile</button>
   </div>
-  <button class="flagbtn" type="button" id="flagbtn" aria-expanded="false" aria-controls="panel">
+  ${CLIENT ? '' : `<button class="flagbtn" type="button" id="flagbtn" aria-expanded="false" aria-controls="panel">
     ${blockers} to confirm
-  </button>
+  </button>`}
 </div>
 
 <div class="stage" id="stage" data-w="desktop">
@@ -240,7 +253,7 @@ body {
   <iframe class="frame" id="f-intake-form" title="Intake form" hidden></iframe>
 </div>
 
-<aside class="panel" id="panel" data-open="false" aria-label="Review notes">
+${CLIENT ? '' : `<aside class="panel" id="panel" data-open="false" aria-label="Review notes">
   <h2>Before this goes near Dr. Bruce</h2>
   <p class="panel__note">
     Nothing below is a bug. These are places where I had no confirmed source, so
@@ -248,7 +261,7 @@ body {
   </p>
   <ul>${rows}
   </ul>
-</aside>
+</aside>`}
 
 <script type="text/plain" id="src-index">${embed('index.html')}</script>
 <script type="text/plain" id="src-intake-form">${embed('intake-form.html')}</script>
@@ -298,11 +311,13 @@ body {
 
   var flagbtn = document.getElementById('flagbtn');
   var panel = document.getElementById('panel');
-  flagbtn.addEventListener('click', function () {
-    var open = panel.dataset.open === 'true';
-    panel.dataset.open = String(!open);
-    flagbtn.setAttribute('aria-expanded', String(!open));
-  });
+  if (flagbtn && panel) {
+    flagbtn.addEventListener('click', function () {
+      var open = panel.dataset.open === 'true';
+      panel.dataset.open = String(!open);
+      flagbtn.setAttribute('aria-expanded', String(!open));
+    });
+  }
 
   addEventListener('message', function (e) {
     if (e.data && e.data.nrNav) show(e.data.nrNav, e.data.hash || '');
@@ -311,5 +326,6 @@ body {
 <\/script>
 `;
 
-writeFileSync(join(root, 'preview.html'), out);
-console.log(`preview.html  ${(Buffer.byteLength(out) / 1024).toFixed(1)} KB`);
+const outFile = CLIENT ? 'preview-client.html' : 'preview.html';
+writeFileSync(join(root, outFile), out);
+console.log(`${outFile}  ${(Buffer.byteLength(out) / 1024).toFixed(1)} KB`);
